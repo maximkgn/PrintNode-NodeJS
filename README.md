@@ -16,13 +16,15 @@ Clone repo and install dependencies:
   cd PrintNode-NodeJS && npm install
 ```
 
+## Usage
+
 Require and instantiate a client:
+
 ```
   var PrintNodeClient = require('~/path/to/printnode-client/index.js');
   var client = new PrintNodeClient({ api_key: "DUMMY_API_KEY", default_printer_id: 123456 });
 ```
 
-## Usage
 ### [Account Information](https://www.printnode.com/docs/api/curl/#account_information)
 
 ```
@@ -58,7 +60,7 @@ Require and instantiate a client:
 
 ### [PrintJobs](https://www.printnode.com/docs/api/curl/#printjobs)
 
-#### Fetching:
+**Fetching**:
 ```
   // Fetch all print jobs
   client.fetchPrintJob().then(...);
@@ -73,7 +75,7 @@ Require and instantiate a client:
   client.fetchPrintJobForPrinter(printer_id, printjob_id).then(...);
 ```
 
-#### Creating
+**Creating**
 Full options for creation of PrintJobs are available in the [API documentation](https://www.printnode.com/docs/api/curl/#printjobs).
 ```
   // Create a print job
@@ -105,17 +107,14 @@ Full options for creation of PrintJobs are available in the [API documentation](
 ### [Scales](https://www.printnode.com/docs/api/curl/#scales)
 
 ```
-  // Fetch all print jobs
-  client.fetchPrintJob().then(...);
+  // Retrieves a single scale by computer_id, device_name and device_number.
+  client.fetchScale(computer_id, device_name, device_number).then(...);
 
-  // Fetch a specific print jobs (returns array of one)
-  client.fetchPrintJob(printjob_id).then(...);
+  // Retrieves an array of scales for a specific computer 
+  client.fetchScalesForComputer(computer_id).then(...);
 
-  // Fetch all print jobs for a specific printer
-  client.fetchPrintJobsForPrinter(printer_id).then(...);
-
-  // Fetch a specific printer from a printer (returns array of one)
-  client.fetchPrintJobForPrinter(printer_id, printjob_id).then(...);
+  // Retrieves an array of scales for a specific computer with a specific device name
+  client.fetchScalesForComputerByDeviceName(computer_id, device_name).then(...);
 ```
 
 ## Testing

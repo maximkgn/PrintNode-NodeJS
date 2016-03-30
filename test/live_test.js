@@ -155,18 +155,41 @@ describe('Print Jobs', function () {
   });
 });
 
-describe('Scales', function () {
+describe.only('Scales', function () {
   this.timeout(10000);
 
   before(function() {
-    this.client = new PrintNodeClient({ api_key: API_KEY, default_printer_id: ACTIVE_PRINTER_ID });
+    this.client = new PrintNodeClient({ api_key: API_KEY });
   });
   
   it('should fetch scales for computer', function () {
-    assert.fail('TEST NOT IMPLEMENTED YET');
+    var computer_id = 0; // magic computer with scales which are "always" there for testing. 
+    return this.client.fetchScalesForComputer(computer_id)
+      .catch(log_error)
+      .should.eventually.be.instanceOf(Array)
+      .should.eventually.have.length.above(0)
+      .should.eventually.satisfy(function (scales) { return !!scales[0].measurement; });
   });
 
   it('should fetch scale for computer by device name', function () {
-    assert.fail('TEST NOT IMPLEMENTED YET');
+    var computer_id = 0; // magic computer with scales which are "always" there for testing. 
+    var device_name = "PrintNode Test Scale";
+    return this.client.fetchScalesForComputerByDeviceName(computer_id, device_name)
+      .catch(log_error)
+      .should.eventually.be.instanceOf(Array)
+      .should.eventually.have.length.above(0)
+      .should.eventually.satisfy(function (scales) { return scales[0].deviceName === "PrintNode Test Scale"; });  
+  });
+
+  it('should fetch scale for computer by device name and number', function () {
+    var computer_id = 0; // magic computer with scales which are "always" there for testing. 
+    var device_name = "PrintNode Test Scale";
+    var device_number = 0;
+
+    return this.client.fetchScale(computer_id, device_name, device_number)
+      .catch(log_error)
+      .should.eventually.have.property('measurement')
+      .should.eventually.equal({ deviceName: device_name, deviceNumber: device_number })
+      .then(console.log);
   });
 });
