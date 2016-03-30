@@ -68,7 +68,7 @@ Require and instantiate a client:
 ```
 
 #### Creating
-[API documentation has full options for PrintJob creation](https://www.printnode.com/docs/api/curl/#printjobs)
+Full options for creation of PrintJobs are available in the [API documentation](https://www.printnode.com/docs/api/curl/#printjobs).
 ```
   // Create a print job
   var options = {
@@ -123,5 +123,5 @@ Requirements:
 
 Running the tests
 
-  1. Change the API_KEY and ACTIVE_PRINTER_ID 
+  1. Change the API_KEY and ACTIVE_PRINTER_ID in test/live_test.js 
   2. Run `npm test`
