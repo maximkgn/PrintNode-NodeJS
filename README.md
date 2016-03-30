@@ -4,15 +4,21 @@ Cloud Printing wrapper for the [PrintNode](https://www.printnode.com) API.
 
 ## Installation
 
-Install dependencies
+Install nodejs + npm.
+
+Clone repo and install dependencies:
+
 ```
-  npm install printnode-client
+  // clone repo
+  git clone https://github.com/miketownsend/PrintNode-NodeJS.git 
+
+  // install dependencies
+  cd PrintNode-NodeJS && npm install
 ```
 
 Require and instantiate a client:
-
 ```
-  var PrintNodeClient = require('printnode');
+  var PrintNodeClient = require('~/path/to/printnode-client/index.js');
   var client = new PrintNodeClient({ api_key: "DUMMY_API_KEY", default_printer_id: 123456 });
 ```
 
